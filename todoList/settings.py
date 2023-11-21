@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
+    'corsheaders',
 
     #local apps
     'todo'
@@ -53,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware"
 ]
 
 ROOT_URLCONF = 'todoList.urls'
@@ -123,7 +127,22 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# media files
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# corsheaders
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
+]
+
+# rest_framework
+REST_FRAMEWORK = {
+    "DEFULT_FILTER_BACKENDS":('django_filters.rest_framework.DjangoFilterBackend','rest_framework.filters.searchFilter')
+}

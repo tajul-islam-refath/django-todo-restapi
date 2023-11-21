@@ -11,6 +11,7 @@ class ToDoSerializer(serializers.ModelSerializer):
             task = data['task'],
             description = data['description'],
             status = data['status'],
+            photo = data['photo'],
             created_at = data['created_at']
         )
         todo.save()
